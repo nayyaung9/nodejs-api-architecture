@@ -11,7 +11,7 @@ import Logger from "@/loaders/logger";
   await require("./loaders").default({ expressApp: app });
   httpServer
     .listen(config.port, () => {
-      Logger.info(`EdxStash Server is listening on port: ${config.port}`);
+      Logger.info(`My Server is listening on port: ${config.port}`);
     })
     .on("error", (err) => {
       process.exit(1);
