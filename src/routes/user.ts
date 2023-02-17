@@ -3,7 +3,7 @@ import { Container } from "typedi";
 import AuthService from "@/services/auth.service";
 import { Logger } from "winston";
 import { IUserInputDTO } from "@/interfaces/IUser";
-
+import { celebrate, Joi, Segments } from "celebrate";
 const route = Router();
 
 export default (app: Router) => {
@@ -13,6 +13,11 @@ export default (app: Router) => {
 
   route.post(
     "/authenticate",
+    celebrate({
+      [Segments.BODY]: Joi.object({
+        email: Joi.string().required(),
+      }),
+    }),
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const data = await AuthServiceInstance.Authenticate(
